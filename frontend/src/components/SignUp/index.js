@@ -12,35 +12,42 @@ import {
 } from "mdb-react-ui-kit";
 
 const SignUp = () => {
+  const [user, setUser] = useState(false);
   const [data, setData] = useState({
     name: "",
     email: "",
     password: "",
   });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    fetch("http://localhost:9000/addUser", {
+    const res = await fetch("http://localhost:9000/addUser", {
       method: "POST",
 
-      // Adding body or contents to send
       body: JSON.stringify({
         name: data.name,
         email: data.email,
         password: data.password,
       }),
 
-      // Adding headers to the request
       headers: {
         "Content-type": "application/json; charset=UTF-8",
       },
     });
 
+    const result = await res.json();
+
+    if (result.error) {
+     alert("This email already used !")
+    } else {
+      alert("sign up success !")
+    }
+
     setData({
       name: "",
       email: "",
       password: "",
-    })
+    });
   };
   const handleInput = (e) => {
     const newData = { ...data };
@@ -62,6 +69,15 @@ const SignUp = () => {
                 <p className="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">
                   Sign up
                 </p>
+                {user ? (
+                  <div className="text-danger align-items-center mb-4">
+                    Enter valid email and password !
+                  </div>
+                ) : (
+                  <div className="text-success align-items-center mb-4">
+                    sign up success!
+                  </div>
+                )}
 
                 <div className="d-flex flex-row align-items-center mb-4 ">
                   <MDBIcon fas icon="user me-3" size="lg" />

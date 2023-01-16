@@ -34,14 +34,12 @@ signInRouter.post("/signin", (req, res) => {
       email: req.body.email,
       password: req.body.password,
     };
-    console.log("succesfully signin");
     const token = jwt.sign(user, options.secretOrKey);
     res.json({ token });
   } else {
-    console.log("please sign up")
-  }
+    return res.status(422).send({error:"Email and password is incorrect"});
+  } 
 
-  // creating the token
 });
 // autherisation
 signInRouter.get(

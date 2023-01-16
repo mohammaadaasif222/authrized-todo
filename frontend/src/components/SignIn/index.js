@@ -12,14 +12,15 @@ import {
 } from "mdb-react-ui-kit";
 
 const SignIn = () => {
+  const [isAuth, setIsAuth] = useState(false)
   const [user, setUser] = useState({
     email: "",
     password: "",
   });
-
-  const handleSubmit = (e) => {
+  
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    fetch("http://localhost:9000/signin", {
+    const res = await fetch("http://localhost:9000/signin", {
       method: "POST",
 
       body: JSON.stringify({
@@ -32,6 +33,13 @@ const SignIn = () => {
       },
     });
 
+   const data = await res.json();
+    
+    if (data.token) {
+      setIsAuth(true)
+    } else {
+      setIsAuth(false)
+    }
     setUser({
       email: "",
       password: "",
@@ -57,6 +65,15 @@ const SignIn = () => {
                 <p className="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">
                   Sign In
                 </p>
+                {isAuth ? (
+                  <div className="text-success align-items-center mb-4">
+                    login success!
+                  </div>
+                ) : (
+                  <div className="text-danger align-items-center mb-4">
+                    Enter valid email and password !
+                  </div>
+                )}
 
                 <div className="d-flex flex-row align-items-center mb-4">
                   <MDBIcon fas icon="envelope me-3" size="lg" />
