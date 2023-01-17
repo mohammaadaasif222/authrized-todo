@@ -12,7 +12,7 @@ import {
 } from "mdb-react-ui-kit";
 
 const SignUp = () => {
-  const [user, setUser] = useState(false);
+  
   const [data, setData] = useState({
     name: "",
     email: "",
@@ -38,9 +38,9 @@ const SignUp = () => {
     const result = await res.json();
 
     if (result.error) {
-     alert("This email already used !")
+      alert("This email already used !");
     } else {
-      alert("sign up success !")
+      alert("sign up success !");
     }
 
     setData({
@@ -53,7 +53,7 @@ const SignUp = () => {
     const newData = { ...data };
     newData[e.target.id] = e.target.value;
     setData(newData);
-    console.log(newData);
+    // console.log(newData);
   };
   return (
     <form onSubmit={(e) => handleSubmit(e)}>
@@ -69,7 +69,7 @@ const SignUp = () => {
                 <p className="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">
                   Sign up
                 </p>
-                {user ? (
+                {/* {user ? (
                   <div className="text-danger align-items-center mb-4">
                     Enter valid email and password !
                   </div>
@@ -77,7 +77,7 @@ const SignUp = () => {
                   <div className="text-success align-items-center mb-4">
                     sign up success!
                   </div>
-                )}
+                )} */}
 
                 <div className="d-flex flex-row align-items-center mb-4 ">
                   <MDBIcon fas icon="user me-3" size="lg" />
