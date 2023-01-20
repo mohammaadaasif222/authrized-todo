@@ -30,7 +30,7 @@ const Main = () => {
       },
       body: JSON.stringify({
         todo: todo,
-        date: new Date().toDateString(),
+        date:  new Date().toLocaleString(),
         isComplete: false,
       }),
     })
@@ -63,10 +63,10 @@ const Main = () => {
   };
 
   return (
-    <div className="col-md-12 border p-3 bg-light">
+    <div className="col-md-12 border p-3 ">
       <div className="container">
         <div className="row">
-          <div className="col-md-6 editing-tools">
+          <div className="col-md-4 editing-tools">
             <select name="fonts" id="fonts" onChange={fontHandler}>
               <option value="sans-serif">sans-serif</option>
               <option value="Georgia">Georgia</option>
@@ -75,7 +75,7 @@ const Main = () => {
               <option value="monospace">monospace</option>
             </select>
           </div>
-          <div className="col-md-6">
+          <div className="col-md-8">
             <input
               className="todo-input"
               type="text"
@@ -85,7 +85,7 @@ const Main = () => {
               maxLength="300"
             ></input>
             <Button
-              variant="outline-success"
+              variant="success"
               className="add-btn"
               onClick={handleCard}
             >
@@ -96,22 +96,20 @@ const Main = () => {
       </div>
       <hr />
       <div
-        className="row reverse-row justify-content-center"
+        className="row reverse-row justify-content-center "
         style={{ fontFamily: font }}
       >
-        <ul>
-          {allTodos.map((item, index) => {
-            return (
-              <Todo
-                text={item.todo}
-                date={item.date}
-                id={item.id}
-                key={index}
-                onSelect={deleteItem}
-              />
-            );
-          })}
-        </ul>
+        {allTodos.map((item, index) => {
+          return (
+            <Todo
+              text={item.todo}
+              date={item.date}
+              id={item.id}
+              key={index}
+              onSelect={deleteItem}
+            />
+          );
+        })}
       </div>
     </div>
   );

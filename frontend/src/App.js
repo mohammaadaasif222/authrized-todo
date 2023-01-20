@@ -5,6 +5,7 @@ import Home from "./components/Home";
 import SignIn from "./components/SignIn";
 import SignUp from "./components/SignUp";
 import Layout from "./components/Layout";
+import {User}  from "./components/User";
 
 
 function App() {
@@ -27,7 +28,7 @@ function App() {
             />
             <Route path="signup" element={<SignUp />} />
             <Route path="signin" element={<SignIn />} />
-            {/* <Route path="*" element={<NoPage />} /> */}
+            <Route path="userdashboard" element={<User />} />
           </Route>
         </Routes>
       </BrowserRouter>

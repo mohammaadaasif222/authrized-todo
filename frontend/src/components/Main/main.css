@@ -32,11 +32,14 @@ margin-left: 10px;
 .add-btn{
     width: 20%;
     margin-left:-1em;
-    padding: 0rem;
-    font-size: 27px;  
+    font-size: 20px !important;  
     z-index: 100px;
 }
 
 .reverse-row{
     flex-direction: row-reverse !important;
+}
+
+.complete{
+    text-decoration: line-through  3px solid rgb(0, 0, 0) !important;
 }
