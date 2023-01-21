@@ -2,6 +2,7 @@ const User = require("../models/user");
 const shortId = require("shortid");
 const jwt = require("jsonwebtoken");
 const expressJwt = require("express-jwt");
+const bcrypt = require("bcrypt");
 
 exports.signup = (req, res) => {
   User.findOne({ email: req.body.email }).exec((err, user) => {
@@ -11,6 +12,10 @@ exports.signup = (req, res) => {
       });
     }
 
+    const salt = 1;
+    const hashPassword = bcrypt.hash(password,salt,(err,data)=>{
+      
+    })
     const { name, email, password } = req.body;
     let username = shortId.generate();
     let profile = `${process.env.CLIENT_URL}/profile/${username}`;
@@ -30,7 +35,7 @@ exports.signup = (req, res) => {
 };
 
 exports.signin = (req, res) => {
-  const { email} = req.body;
+  const { email } = req.body;
 
   User.findOne({ email }).exec((err, user) => {
     if (err || !user) {
@@ -38,7 +43,6 @@ exports.signin = (req, res) => {
         error: "User with that email does not exist. Please signup.",
       });
     }
-
 
     // generate a token and send to client
     const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET);

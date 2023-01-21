@@ -14,7 +14,6 @@ import {
 } from "mdb-react-ui-kit";
 
 const SignIn = () => {
-  
   const [values, setValues] = useState({
     email: "",
     password: "",
@@ -31,7 +30,6 @@ const SignIn = () => {
     const user = { email, password };
 
     signin(user).then((data) => {
-     
       if (data.error) {
         setValues({ ...values, error: data.error });
       } else {
@@ -53,80 +51,75 @@ const SignIn = () => {
   };
 
   const showError = () =>
-    error ? <div className="alert alert-danger">{error}</div> : "";
+    error ? <div className="alert alert-danger ">{error}</div> : "";
   const showMessage = () =>
     message ? <div className="alert alert-info">{message}</div> : "";
+
+    
   const signinForm = () => {
     return (
-      <>
-        {!showForm ? <User/>:
-          <form onSubmit={(e) => handleSubmit(e)}>
-            <MDBContainer fluid>
-              <MDBCard
-                className="text-black m-5"
-                style={{ borderRadius: "25px" }}
-              >
-                <MDBCardBody>
-                  <MDBRow>
-                    <MDBCol
-                      md="10"
-                      lg="6"
-                      className="order-2 order-lg-1 d-flex flex-column align-items-center"
-                    >
-                      <p className="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">
-                        Sign In
-                      </p>
+      <form onSubmit={(e) => handleSubmit(e)}>
+        <MDBContainer fluid>
+          <MDBCard className="text-black m-5" style={{ borderRadius: "25px" }}>
+            <MDBCardBody>
+              <MDBRow>
+                <MDBCol
+                  md="10"
+                  lg="6"
+                  className="order-2 order-lg-1 d-flex flex-column align-items-center"
+                >
+                  <p className="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">
+                    Sign In
+                  </p>
 
-                      <div className="d-flex flex-row align-items-center mb-4">
-                        <MDBIcon fas icon="envelope me-3" size="lg" />
-                        <MDBInput
-                          onChange={(e) => handleInput(e)}
-                          value={values.email}
-                          label="Your Email"
-                          id="email"
-                          type="email"
-                        />
-                      </div>
+                  <div className="d-flex flex-row align-items-center mb-4">
+                    <MDBIcon fas icon="envelope me-3" size="lg" />
+                    <MDBInput
+                      onChange={(e) => handleInput(e)}
+                      value={values.email}
+                      label="Your Email"
+                      id="email"
+                      type="email"
+                    />
+                  </div>
 
-                      <div className="d-flex flex-row align-items-center mb-4">
-                        <MDBIcon fas icon="lock me-3" size="lg" />
-                        <MDBInput
-                          onChange={(e) => handleInput(e)}
-                          value={values.password}
-                          label="Password"
-                          id="password"
-                          type="password"
-                        />
-                      </div>
+                  <div className="d-flex flex-row align-items-center mb-4">
+                    <MDBIcon fas icon="lock me-3" size="lg" />
+                    <MDBInput
+                      onChange={(e) => handleInput(e)}
+                      value={values.password}
+                      label="Password"
+                      id="password"
+                      type="password"
+                    />
+                  </div>
 
-                      <MDBBtn className="mb-4" size="lg" type="submit">
-                        Sign In
-                      </MDBBtn>
-                    </MDBCol>
+                  <MDBBtn className="mb-4" size="lg" type="submit">
+                    Sign In
+                  </MDBBtn>
+                </MDBCol>
 
-                    <MDBCol
-                      md="10"
-                      lg="6"
-                      className="order-1 order-lg-2 d-flex align-items-center"
-                    >
-                      <MDBCardImage
-                        src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp"
-                        fluid
-                      />
-                    </MDBCol>
-                  </MDBRow>
-                </MDBCardBody>
-              </MDBCard>
-            </MDBContainer>
-          </form>
-        }
-      </>
+                <MDBCol
+                  md="10"
+                  lg="6"
+                  className="order-1 order-lg-2 d-flex align-items-center"
+                >
+                  <MDBCardImage
+                    src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp"
+                    fluid
+                  />
+                </MDBCol>
+              </MDBRow>
+            </MDBCardBody>
+          </MDBCard>
+        </MDBContainer>
+      </form>
     );
   };
   return (
     <React.Fragment>
       <div className="container-fluid pb-3 item-center">
-        <div className="col-md-6">
+        <div className="col-md-6 m-auto">
           {showError()}
           {showMessage()}
         </div>
