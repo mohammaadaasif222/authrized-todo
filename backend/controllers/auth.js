@@ -12,10 +12,6 @@ exports.signup = (req, res) => {
       });
     }
 
-    const salt = 1;
-    const hashPassword = bcrypt.hash(password,salt,(err,data)=>{
-      
-    })
     const { name, email, password } = req.body;
     let username = shortId.generate();
     let profile = `${process.env.CLIENT_URL}/profile/${username}`;
